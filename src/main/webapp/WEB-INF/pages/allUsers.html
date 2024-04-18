@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<div>
+  <th:block th:each="user : ${users}">
+    <h3 th:text="${user}"></h3> <a href="/edit?id=${film.id}">edit</a> <a href="/delete?id=${film.id}">delete</a>
+  </th:block>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/users/addUser">Create new user</a>
+
+</body>
+</html>
