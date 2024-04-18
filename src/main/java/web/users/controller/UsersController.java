@@ -1,56 +1,47 @@
-package testgroup.filmography.controller;
+package web.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import testgroup.filmography.config.HibernateConfig;
-import testgroup.filmography.model.Film;
-import testgroup.filmography.service.FilmService;
-import testgroup.filmography.service.FilmServiceImpl;
+import web.users.model.User;
+import web.users.service.UserService;
 
 import java.util.List;
 
 @Controller
-public class FilmController {
+public class UsersController {
 
-    //AnnotationConfigApplicationContext context =
-    //        new AnnotationConfigApplicationContext(HibernateConfig.class);
-
-    //FilmService filmService = context.getBean(FilmService.class);
-
-    private FilmService filmService;
+    private UserService userService;
 
     @Autowired
-    public void setFilmService(FilmService filmService) {
-        this.filmService = filmService;
+    public void setFilmService(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String allFilms(ModelMap model) {
-
-        //userService.getUsers(count);
-        //model.addAttribute("all_users", userService.getUsers(count));
-        model.addAttribute("users", filmService.allFilms());
-        return "allUsers";
+    public ModelAndView allFilms() {
+        List<User> users = userService.allFilms();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("users");
+        modelAndView.addObject("usersList", users);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView editPage(@RequestParam(value = "id") int id) {
-        Film film = filmService.getById(id);
+        User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
-        modelAndView.addObject("film", film);
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView editFilm(@ModelAttribute("film") Film film) {
+    public ModelAndView editFilm(@ModelAttribute("film") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
-        filmService.edit(film);
+        userService.edit(user);
         return modelAndView;
     }
 
@@ -62,10 +53,10 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addFilm(@ModelAttribute("film") Film film) {
+    public ModelAndView addFilm(@ModelAttribute("film") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
-        filmService.add(film);
+        userService.add(user);
         return modelAndView;
     }
 
@@ -73,8 +64,8 @@ public class FilmController {
     public ModelAndView deleteFilm(@RequestParam(value = "id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
-        Film film = filmService.getById(id);
-        filmService.delete(film);
+        User user = userService.getById(id);
+        userService.delete(user);
         return modelAndView;
     }
 }

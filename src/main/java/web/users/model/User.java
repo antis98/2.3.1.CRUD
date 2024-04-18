@@ -1,10 +1,10 @@
-package testgroup.filmography.model;
+package web.users.model;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "films")
-public class Film {
+public class User {
 
     @Id
     @Column(name = "id")
@@ -12,16 +12,16 @@ public class Film {
     private int id;
 
     @Column(name = "title")
-    private String title;
+    private String name;
 
     @Column(name = "year")
     private int year;
 
     @Column(name = "genre")
-    private String genre;
+    private String lastName;
 
     @Column(name = "watched")
-    private boolean watched;
+    private boolean employer;
 
 
     public int getId() {
@@ -32,12 +32,12 @@ public class Film {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String title) {
+        this.name = title;
     }
 
     public int getYear() {
@@ -48,24 +48,24 @@ public class Film {
         this.year = year;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setLastName(String genre) {
+        this.lastName = genre;
     }
 
-    public boolean isWatched() {
-        return watched;
+    public boolean isEmployer() {
+        return employer;
     }
 
-    public void setWatched(boolean watched) {
-        this.watched = watched;
+    public void setEmployer(boolean watched) {
+        this.employer = watched;
     }
 
     @Override
     public String toString() {
-        return " " + id + " " + title + " " + year + " " + genre + " " + watched;
+        return name + " " + year + " " + lastName + " " + employer;
     }
 }

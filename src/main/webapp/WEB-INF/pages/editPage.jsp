@@ -2,37 +2,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <c:if test="${empty film.title}">
+    <c:if test="${empty user.name}">
         <title>Add</title>
     </c:if>
-    <c:if test="${!empty film.title}">
+    <c:if test="${!empty user.name}">
         <title>Edit</title>
     </c:if>
 </head>
 <body>
-<c:if test="${empty film.title}">
+<c:if test="${empty user.name}">
     <c:url value="/add" var="var"/>
 </c:if>
-<c:if test="${!empty film.title}">
+<c:if test="${!empty user.name}">
     <c:url value="/edit" var="var"/>
 </c:if>
 <form action="${var}" method="POST">
-    <c:if test="${!empty film.title}">
-        <input type="hidden" name="id" value="${film.id}">
+    <c:if test="${!empty user.name}">
+        <input type="hidden" name="id" value="${user.id}">
     </c:if>
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="lastName">LastName</label>
+    <input type="text" name="lastName" id="lastName">
     <label for="year">Year</label>
     <input type="text" name="year" id="year">
-    <label for="genre">Genre</label>
-    <input type="text" name="genre" id="genre">
-    <label for="watched">Watched</label>
-    <input type="text" name="watched" id="watched">
-    <c:if test="${empty film.title}">
-        <input type="submit" value="Add new film">
+    <label for="employer">Employer</label>
+    <input type="text" name="employer" id="employer">
+    <c:if test="${empty user.name}">
+        <input type="submit" value="Add new user">
     </c:if>
-    <c:if test="${!empty film.title}">
-        <input type="submit" value="Edit film">
+    <c:if test="${!empty user.name}">
+        <input type="submit" value="Edit user">
     </c:if>
 </form>
 </body>
