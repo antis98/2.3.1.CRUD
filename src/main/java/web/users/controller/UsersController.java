@@ -21,7 +21,7 @@ public class UsersController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView allFilms() {
-        List<User> users = userService.allFilms();
+        List<User> users = userService.allUsers();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("users");
         modelAndView.addObject("usersList", users);
