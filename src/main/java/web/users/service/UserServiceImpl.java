@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO = new UserDAOImpl();
 
-    @Transactional
     @Override
     public List<User> allUsers() {
         return userDAO.allUsers();
@@ -39,7 +38,6 @@ public class UserServiceImpl implements UserService {
         userDAO.edit(user);
     }
 
-    @Transactional
     @Override
     public User getById(int id) {
         return userDAO.getById(id);
