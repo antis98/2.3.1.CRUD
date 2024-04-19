@@ -2,6 +2,7 @@ package web.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.users.model.User;
@@ -15,12 +16,13 @@ public class UsersController {
     private UserService userService;
 
     @Autowired
-    public void setFilmService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
+
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView allFilms() {
+    public ModelAndView allUsers() {
         List<User> users = userService.allUsers();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("users");
@@ -38,7 +40,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView editFilm(@ModelAttribute("film") User user) {
+    public ModelAndView editUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.edit(user);
@@ -53,7 +55,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addFilm(@ModelAttribute("film") User user) {
+    public ModelAndView addUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.add(user);
@@ -61,7 +63,7 @@ public class UsersController {
     }
 
     @RequestMapping(value="/delete", method = RequestMethod.GET)
-    public ModelAndView deleteFilm(@RequestParam(value = "id") int id) {
+    public ModelAndView deleteUser(@RequestParam(value = "id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         User user = userService.getById(id);
